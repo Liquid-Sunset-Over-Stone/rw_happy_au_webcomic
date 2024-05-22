@@ -1,0 +1,376 @@
+@font-face {
+  font-family: "Rodondo";
+  src: url("./webpage_template/Rodondo.otf");
+}
+@font-face {
+    font-family: "rain-font";
+    src: url("./webpage_template/rain-world-menu-font-webfont.ttf");
+}
+  @font-face {
+  font-family: "segoe ui";
+  font-weight: 600;
+  src: url("./webpage_template/segoe-ui.ttf");
+}
+@keyframes metal {
+  0% {
+    background-clip: text;
+    background-position-x: 1000px;
+    background-image: linear-gradient(
+      45deg,
+      #999 5%,
+      #fff 10%,
+      #ccc 30%,
+      #ddd 50%,
+      #ccc 70%,
+      #fff 80%,
+      #999 95%
+    );
+    background-size: 45px;
+  }
+  100% {
+    background-clip: text;
+
+    background-position-x: 0px;
+    background-image: linear-gradient(
+      45deg,
+      #999 5%,
+      #fff 10%,
+      #ccc 30%,
+      #ddd 50%,
+      #ccc 70%,
+      #fff 80%,
+      #999 95%
+    );
+    background-size: 45px;
+  }
+}
+@keyframes border-blinker {
+    50% {
+        border-color: rgba(255,255,255,255);
+    }
+}
+
+@keyframes flasher {
+    0% {
+        background-color: #A9A4B2; /* menu lightgray */
+    }
+}
+html {
+  min-height: 100%;
+}
+  
+body {
+  min-height: 100%;
+  background: black;
+
+  background-image: linear-gradient(
+      rgba(0, 75, 0, 0.05) 0%,
+      rgba(0, 15, 0, 0.75) 100%
+    ),
+    url("https://images.unsplash.com/photo-1578922427288-a47338083a57?q=80&w=1390&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-attatchment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+* {
+  box-sizing: border-box;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.flex-item-left {
+  flex: 50%;
+  padding: 5px;
+  max-width: 955px;
+}
+
+.flex-item-right {
+  flex: 50%;
+  padding: 5px;
+  max-width: 315px;
+}
+.can {
+  max-width: 1920px;
+  align-content: center;
+  background: rgba(0, 0, 0, 0.95);
+  color: white;
+  border: white;
+  border-style: solid;
+  font-weight: 400;
+  border-radius: 10px;
+  border-width: 2px;
+  backdrop-filter: blur(1px);
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+h1, h2, h3, h4, h5 {
+  font-family: "Rodondo";
+  font-weight: normal;
+  letter-spacing: 1.5px;
+  animation-name: metal;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  color: rgba(0, 0, 0, 0);
+}
+p {
+  font-family: "rain-font", "segoe ui";
+  font-size: small;
+}
+.projection_wrapper {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+/*credit for how i got the octagon going: https://stackoverflow.com/questions/34641588/how-do-i-give-a-css-octagon-shape-a-full-border*/
+.projection {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  transform: rotate(45deg);
+  background: rgba(250, 225, 25, 0.5);
+  border: 2px double rgba(250, 225, 25, 0.75);
+}
+.projection:before {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  transform: rotate(45deg);
+  content: "";
+  border: inherit;
+}
+.projected {
+  scale: 75%;
+  opacity: 0.5;
+  image-rendering: pixilate;
+  margin-top: 50px; /*adjust as needed in the individual divs*/
+}
+  /*by the way i have little to no idea what im doing, im a high schooler with a hyperfixation and my code (css is coding, but html isnt. yes i will die on this hill. and javascript obviously is coding.) is not the best example of good code and my html is horrid. im trying to make this as accessible and usable as possible but im kinda stupid lol.
+  i cant wait until i have coworkers that have to deal with my unconventional web development and lack of rememberance of the usages of different thingies.
+  i should not become a teacher.
+  and yes i did remake an entire font out of "why isnt this liscensed for webfont use" spite. the font is a recreation and should be accessible for everyone imo, specially because its basically just pixilated segoe ui*/
+a {
+  font-family: "rain-font", "segoe ui";
+  font-size: small;
+}
+
+button.rw-ui {
+  font-family: "rain-font", "segoe ui";
+  background-color: black;
+    appearance: none;
+    cursor: pointer;
+    position: relative;
+    border-radius: 8px;
+    border: 2px solid #A9A4B200; /* alpha 0 for fading */
+    box-sizing: border-box; /* correctness */
+    width: 75%;
+    height: 100%;
+    margin: 0px;
+    color: #A9A4B2; /* menu lightgray */
+    transition: color 0.3s;
+}
+
+    button.rw-ui:hover {
+        animation: border-blinker 0.8s linear infinite, flasher 0.3s;
+        color: white;
+    }
+
+    button.rw-ui::before { /* outline that expands */
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: -2px; /* undo parent border */
+        border-radius: 8px;
+        border: 2px solid #A9A4B2; /* menu lightgray */
+        transition: padding 0.3s, border-color 0.3s, margin 0.3s;
+    }
+
+    button.rw-ui:hover::before {
+        border-color: white;
+        padding: 4px;
+        margin: -6px;
+    }
+
+    button.rw-ui:active::before {
+        border-color: white;
+        padding: unset;
+        margin: -2px;
+    }
+
+select{
+  background-color: black;
+  color: white;
+  border: white;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 1px;
+  text-transform: uppercase;
+  font-family: "rain-font", "segoe ui";
+  font-size: 55%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  align-text: center;
+}
+
+
+.check{
+     
+  border: 25px solid;
+  border-image-slice: 50%;
+  border-image-source: url("https://static.miraheze.org/rainworldwiki/a/a0/Collection_iterator_box_%28unselected%29.png");
+  border-image-repeat: stretch;
+  
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+}
+
+#checkboxes input[type=checkbox]{
+    display: none;
+}
+
+#checkboxes input[type=checkbox]:checked + .check{
+ 
+  border: 25px solid;
+    border-image-source: url("https://static.miraheze.org/rainworldwiki/b/bb/Collection_iterator_box_%28selected%29.png");
+  border-image-slice: 50%;
+  border-image-repeat: stretch;
+  background: url("https://static.miraheze.org/rainworldwiki/7/76/Karma_10_icon_%28no_circle%29.png");
+  background-origin: border-box;
+  background-position: center;
+}
+#checkboxes input[type=checkbox]:checked::before + .check::before{
+  
+}
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.radButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background: url("https://static.miraheze.org/rainworldwiki/5/52/Food_pip_empty.png");
+  border-radius: 50%;
+}
+
+
+
+
+.container input:checked ~ .radButton {
+  background: url("https://static.miraheze.org/rainworldwiki/c/ce/Food_pip_full.png");
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radButton:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	
+}
+.fancy_header::before{
+  content: url("https://static.miraheze.org/rainworldwiki/9/90/Batfly_icon.png");
+  padding: 5px;
+}
+.fancy_header::after{
+  content: url("https://static.miraheze.org/rainworldwiki/9/90/Batfly_icon.png");
+  padding: 5px;
+    
+}
+li {
+  background: url("https://static.miraheze.org/rainworldwiki/0/09/Pearl_Misc.png") no-repeat left center;
+  list-style: none;
+  padding: 5px 10px 5px 25px;
+  margin: 0;
+  vertical-align: middle;
+}
+  .crt::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  
+  background: rgba(58, 56, 10, 0.1);
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+.crt{
+  transform: rotate(-45deg);
+  background-repeat: repeat;
+  scale: 150%;
+  width: 100%;
+  height: 100%;
+    
+}
+.crt::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(58, 56, 10, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(225, 225, 0, 0.06),
+      rgba(255, 255, 0, 0.02),
+      rgba(255, 205, 155, 0.06)
+    );
+  z-index: -1;
+  background-size: 100% 2px,5px 100%;
+  pointer-events: none;
+}
+  label{
+  font-family: "rain-font";
+}
